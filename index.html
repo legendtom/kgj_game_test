@@ -5,11 +5,20 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | KGJ</title>
     <script src="Build/UnityLoader.js"></script>
+    <style>
+      #unityContainer {
+        width: 720px; /* 设置宽度为横屏宽度 */
+        height: 1280px; /* 设置高度为横屏高度 */
+        margin: auto;
+        transform: rotate(90deg); /* 旋转90度，将游戏内容旋转为横屏模式 */
+        transform-origin: left top; /* 设置旋转的原点为左上角 */
+      }
+    </style>
     <script>
       UnityLoader.instantiate("unityContainer", "Build/testweb.json");
     </script>
   </head>
   <body>
-    <div id="unityContainer" style="width: 1280px; height: 720px; margin: auto"></div>
+    <div id="unityContainer"></div>
   </body>
 </html>
