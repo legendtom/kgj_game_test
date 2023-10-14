@@ -4,14 +4,16 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | KGJ</title>
+
+    <!-- 设置视口方向为横屏 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1, maximum-scale=1, target-densityDpi=device-dpi, viewport-fit=cover">
+
     <script src="Build/UnityLoader.js"></script>
     <style>
       #unityContainer {
-        width: 720px; /* 设置宽度为横屏宽度 */
-        height: 1280px; /* 设置高度为横屏高度 */
-        margin: auto;
-        transform: rotate(90deg); /* 旋转90度，将游戏内容旋转为横屏模式 */
-        transform-origin: left top; /* 设置旋转的原点为左上角 */
+        width: 100%; /* 设置宽度为100%以填充整个屏幕 */
+        height: 100vh; /* 设置高度为100vh以填充整个屏幕 */
+        margin: 0;
       }
     </style>
     <script>
