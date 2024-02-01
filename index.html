@@ -7,22 +7,16 @@
     <script src="Build/UnityLoader.js"></script>
     <script>
       UnityLoader.instantiate("unityContainer", "Build/TEST2.json");
-      
-      function toggleFullscreen() {
+
+      function forceLandscapeFullscreen() {
         var elem = document.getElementById("unityContainer");
-        if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
-          // exit fullscreen
-          if (document.exitFullscreen) {
-            document.exitFullscreen();
-          } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
-          } else if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
-          } else if (document.msExitFullscreen) {
-            document.msExitFullscreen();
-          }
-        } else {
-          // enter fullscreen
+        
+        // Check if the browser supports screen orientation API
+        if (screen.orientation && screen.orientation.lock) {
+          // Lock the screen orientation to landscape
+          screen.orientation.lock("landscape");
+          
+          // Enter fullscreen mode
           if (elem.requestFullscreen) {
             elem.requestFullscreen();
           } else if (elem.webkitRequestFullscreen) {
@@ -32,17 +26,19 @@
           } else if (elem.msRequestFullscreen) {
             elem.msRequestFullscreen();
           }
+        } else {
+          alert("Screen orientation lock not supported on this device.");
         }
       }
     </script>
   </head>
   <body>
-    <div style="height:40px; width: 100%; background: green;" onclick="toggleFullscreen()"><b>Click here to toggle fullscreen.</b></div>
+    <div style="height:40px; width: 100%; background: green;" onclick="forceLandscapeFullscreen()"><b>點擊這裡強制橫向全螢幕。</b></div>
     <div class="webgl-content">
       <div id="unityContainer" style="width: 100%; height: 100%"></div>
       <div class="footer">
         <div class="webgl-logo"></div>
-        <div class="fullscreen" onclick="toggleFullscreen()"></div>
+        <div class="fullscreen" onclick="forceLandscapeFullscreen()"></div>
         <div class="title">KGJ</div>
       </div>
     </div>
