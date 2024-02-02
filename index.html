@@ -11,38 +11,36 @@
       function forceLandscapeFullscreen() {
         var elem = document.getElementById("unityContainer");
         
-        // Check if the browser is running on iOS
-        var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        // Check if the browser supports screen orientation API
+        if (screen.orientation && screen.orientation.lock) {
+          // Lock the screen orientation to landscape
+          screen.orientation.lock("landscape");
+		  }
+          // Calculate the desired aspect ratio (1280x720)
+          //var aspectRatio = 1280 / 720;
 
-        if (isIOS) {
-          alert("iOS devices require user interaction to enter fullscreen.");
-        } else {
-          // Lock the screen orientation to landscape (for non-iOS devices)
-          if (screen.orientation && screen.orientation.lock) {
-            screen.orientation.lock("landscape").catch(function(error) {
-              alert("Screen orientation lock failed: " + error.message);
-            });
-          }
+          // Get the screen width and height
+          //var screenWidth = screen.width;
+          //var screenHeight = screen.height;
 
-          // Enter fullscreen mode (for non-iOS devices)
+          // Calculate the required width to maintain the aspect ratio
+          //var requiredWidth = screenHeight * aspectRatio;
+
+          // Set the element width and height
+          //elem.style.width = requiredWidth + "px";
+          //elem.style.height = screenHeight + "px";
+          
+          // Enter fullscreen mode
           if (elem.requestFullscreen) {
-            elem.requestFullscreen().catch(function(error) {
-              alert("Fullscreen request failed: " + error.message);
-            });
+            elem.requestFullscreen();
           } else if (elem.webkitRequestFullscreen) {
-            elem.webkitRequestFullscreen().catch(function(error) {
-              alert("Fullscreen request failed: " + error.message);
-            });
+            elem.webkitRequestFullscreen();
           } else if (elem.mozRequestFullScreen) {
-            elem.mozRequestFullScreen().catch(function(error) {
-              alert("Fullscreen request failed: " + error.message);
-            });
+            elem.mozRequestFullScreen();
           } else if (elem.msRequestFullscreen) {
-            elem.msRequestFullscreen().catch(function(error) {
-              alert("Fullscreen request failed: " + error.message);
-            });
+            elem.msRequestFullscreen();
           }
-        }
+        
       }
     </script>
   </head>
