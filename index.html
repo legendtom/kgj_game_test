@@ -4,6 +4,43 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | KGJ</title>
+    <style>
+      body, html {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      #unityContainer {
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .webgl-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #ddd;
+        padding: 5px;
+      }
+
+      .fullscreen {
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+        background-color: lightblue;
+      }
+    </style>
     <script src="Build/UnityLoader.js"></script>
     <script>
       UnityLoader.instantiate("unityContainer", "Build/TEST2.json");
@@ -13,11 +50,6 @@
 
         // Update the container size to fill the entire window
         updateContainerSize(elem);
-
-        // Listen for window resize events
-        window.addEventListener("resize", function() {
-          updateContainerSize(elem);
-        });
       }
 
       function updateContainerSize(container) {
@@ -28,9 +60,8 @@
     </script>
   </head>
   <body>
-    <div style="height:40px; width: 100%; background: green;" onclick="maximizeWindow()"><b>點擊這裡窗口最大化。</b></div>
     <div class="webgl-content">
-      <div id="unityContainer" style="width: 100%; height: 100%"></div>
+      <div id="unityContainer"></div>
       <div class="footer">
         <div class="webgl-logo"></div>
         <div class="fullscreen" onclick="maximizeWindow()"></div>
