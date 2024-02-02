@@ -6,10 +6,55 @@
     <title>Unity WebGL Player | KGJ</title>
     <script src="Build/UnityLoader.js"></script>
     <script>
-      UnityLoader.instantiate("unityContainer", "Build/TTT2.json");
+      UnityLoader.instantiate("unityContainer", "Build/TEST2.json");
+
+      function forceLandscapeFullscreen() {
+        var elem = document.getElementById("unityContainer");
+        
+        // Check if the browser supports screen orientation API
+        if (screen.orientation && screen.orientation.lock) {
+          // Lock the screen orientation to landscape
+          screen.orientation.lock("landscape");
+
+          // Calculate the desired aspect ratio (1280x720)
+          //var aspectRatio = 1280 / 720;
+
+          // Get the screen width and height
+          //var screenWidth = screen.width;
+          //var screenHeight = screen.height;
+
+          // Calculate the required width to maintain the aspect ratio
+          //var requiredWidth = screenHeight * aspectRatio;
+
+          // Set the element width and height
+          //elem.style.width = requiredWidth + "px";
+          //elem.style.height = screenHeight + "px";
+          
+          // Enter fullscreen mode
+          if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+          } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+          } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+          } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+          }
+        } else {
+          alert("Screen orientation lock not supported on this device.");
+        }
+      }
     </script>
   </head>
   <body>
-    <div id="unityContainer" style="width: 1920px; height: 1080px; margin: auto"></div>
+    <div style="height:40px; width: 100%; background: green;" onclick="forceLandscapeFullscreen()"><b>點擊這裡強制橫向全螢幕。</b></div>
+    <div class="webgl-content">
+      <div id="unityContainer" style="width: 100%; height: 100%"></div>
+      <div class="footer">
+        <div class="webgl-logo"></div>
+        <div class="fullscreen" onclick="forceLandscapeFullscreen()"></div>
+        <div class="title">KGJ</div>
+      </div>
+    </div>
   </body>
 </html>
